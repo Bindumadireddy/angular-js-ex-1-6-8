@@ -1,0 +1,104 @@
+//HTML
+
+<!--The content below is only a placeholder and can be replaced.-->
+<div id="content" style="text-align:center">
+  <h1>
+   My Library
+  </h1>
+<p>Title<input type="text" [(ngModel)]="Title">&nbsp;
+ Author <input type="text" [(ngModel)]="Author"> &nbsp; <button id="first"(click)="add()">Add</button></p>
+<table style="text-align:center">
+<tr>
+  <th>title</th>
+  <th>author</th>
+  <th>delete</th>
+</tr>
+<tr *ngFor="let item of array">
+  <td>{{item.title}}</td>
+  <td>{{item.author}}</td>
+  <td> <button class="buttonn" (click)="x(item.id)"><td>x</td></button>
+ </tr>
+
+</table>
+  </div>
+
+
+
+//CSS
+
+#content{
+    border:2px solid peachpuff;
+    margin:auto;
+    height:500px;
+    width:700px;
+    background-color: peachpuff
+}
+#first{
+    background-color: green
+}
+
+table,tr,td,th{
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin:auto;
+    padding:11px
+    
+}
+
+//COMPONENT.TS
+
+import { Component } from '@angular/core';
+
+
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  Title:any="";
+  Author:any="";
+  idcount:number=0;
+  array=[];
+  add(){
+   this.idcount=this.idcount+1
+    this.array.push({
+      id:this.idcount,
+      title:this.Title,
+      author:this.Author
+
+    })
+    this.Title=""
+    this.Author=""
+   
+  }
+  x(number)
+  {
+    this.array=this.array.filter((item)=>item.id!== number)
+  }
+}
+
+//MODULE.TS
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { FormsModule }  from  '@angular/forms'
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
