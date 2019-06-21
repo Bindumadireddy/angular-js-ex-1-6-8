@@ -1,0 +1,144 @@
+//HTML
+
+<!--The content below is only a placeholder and can be replaced.-->
+<div  style="text-align:center">
+  <input type="text" disabled [value]="display" >
+  <br>
+ <input *ngIf ="result!=undefined" type="text" disabled [value]="result">
+ <table>
+   <tr><button  (click)="value(1)"><td>1</td></button>
+       <button (click)="value(2)"><td>2</td></button>
+        <button (click)="value(3)"><td>3</td></button>
+        <button (click)="oper('+')"><td>+</td></button>
+</tr>
+      <tr>
+      <button (click)="value(4)"><td>4</td></button>
+        <button (click)="value(5)"><td>5</td></button>
+          <button (click)="value(6)"><td>6</td></button>
+            <button (click)="oper('-')"><td>-</td></button>
+   </tr>
+   <tr>
+      <button (click)="value(7)"><td>7</td></button>
+        <button (click)="value(8)"><td>8</td></button>
+          <button (click)="value(9)"><td>9</td></button>
+            <button (click)="oper('*')"><td>*</td></button>
+   </tr>
+   <tr> 
+      <button (click)="clear('C')"><td>C</td></button>
+        <button (click)="value(0)"><td>0</td></button>
+          <button (click)="evaluate()"><td>=</td></button>
+            <button (click)="oper('/')"><td>/</td></button>
+   </tr>
+ </table>
+
+
+//CSS
+
+table,tr,td{
+    margin:auto;
+    border:1px solid black;
+    padding:10px
+}
+table{
+   
+    border-collapse: collapse
+}
+
+//COMPONENT.TS
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  num:string="";
+  display:string="";
+  count=0;
+  result:any;
+  operators:string="";
+  array=[]
+ 
+  value(numbers){
+    this.num=this.num+numbers;
+    this.display=`${this.num}`;
+  }
+  oper(operations)
+  {
+    if(this.count==0)
+    {
+      this.num=this.num+operations;
+    this.operators=operations;
+    this.count=1;
+    
+    this.display=`${this.num}`;
+  }}
+  evaluate(){
+    this.display=`${this.num}`;
+    this.array=this.num.split(this.operators);
+  
+  switch(this.operators)
+  {
+    case "+":
+            this.result=parseInt(this.array[0])+parseInt(this.array[1])
+            break;
+    case "-":
+            this.result=parseInt(this.array[0])-parseInt(this.array[1])
+            break;
+  case "*":
+            this.result=parseInt(this.array[0])*parseInt(this.array[1])
+            break;
+case "/":
+            this.result=parseInt(this.array[0])/parseInt(this.array[1])
+            break;        
+    }        
+    }
+    clear()
+    {
+      this.num="";
+ 
+      this.display="";
+      this.count=0;
+      result:undefined;
+      this.operators="";
+      this.array=[]
+    }
+  }
+
+  //MODULE.TS
+  
+  import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+ 
+
+
+
+
+  
+  
+  
+  
+
+
+
+
+
