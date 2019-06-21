@@ -1,0 +1,186 @@
+//HTML
+
+<!--The content below is only a placeholder and can be replaced.-->
+<div id="main">
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+   
+      <h1><span style='margin-right:14em;'></span>Register</h1><br>
+
+    <span style='margin-right:20em;'></span>Full Name<span style='margin-right:13em;'></span>Date of birth<br>
+    <span style='margin-right:20em;'></span><input type="text" name="name" 
+    required minlength="4" 
+    [(ngModel)]="content.fullname" #name="ngModel">
+    <span style='margin-right:6em;'></span><input type="text" name="dob"
+    required [(ngModel)]="content.date" #dob="ngModel" pattern="[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}">
+    
+    
+    <div *ngIf="name.invalid && (name.dirty || name.touched)">
+    
+    <div *ngIf="name.errors.required">
+        <span style='margin-right:20em;'></span><b>Name is required.</b>
+    </div>
+    <div *ngIf="name.errors.minlength">
+        <span style='margin-right:20em;'></span> <b>Name must be at least 4 characters long.</b>
+    </div>
+  </div>
+    
+
+    <div *ngIf="dob.invalid && (dob.dirty || dob.touched)">
+   
+    <div *ngIf="dob.errors.required">
+        <span style='margin-right:37em;'></span><b> Date of Birth is required.</b>
+    </div>
+    <div *ngIf="dob.errors.pattern">
+        <span style='margin-right:37em;'></span>  <b>dd/mm/yyyy is the format.</b>
+     </div></div>
+     <br><br>
+
+    
+    <span style='margin-right:20em;'></span>Email Address<span style='margin-right:11em;'></span>Phone number<br>
+    <span style='margin-right:20em;'></span><input type="email" name="mail"
+    required minlength="10" [(ngModel)]="content.mailid" #mail="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+    
+    <span style='margin-right:6em;'></span><input type="number" name="phnum" 
+    required  [(ngModel)]="content.phnumber" #phnum="ngModel" pattern="[0-9]{10}">
+    
+    <div  *ngIf="mail.invalid && (mail.dirty || mail.touched)">
+   
+   <div *ngIf="mail.errors.required">
+      <span style='margin-right:20em;'></span> <b>Mail is required.</b>
+  </div>
+   <div *ngIf="mail.errors.pattern">
+      <span style='margin-right:20em;'></span> <b>Invalid Mail.</b>
+  </div>
+   <div *ngIf="mail.errors.minlength">
+      <span style='margin-right:20em;'></span><b> Mail must be at least 10 characters long.</b>
+  </div>
+</div>
+
+<div  *ngIf="phnum.invalid && (phnum.dirty || phnum.touched)">
+   
+    <div *ngIf="phnum.errors.required">
+        <span style='margin-right:37em;'></span>  <b>Phone Number is required.</b>
+      </div>
+      <div *ngIf="phnum.errors.pattern ">
+          <span style='margin-right:37em;'></span><b> Invalid Phone Number.</b>
+        </div>
+      </div><br><br>
+    
+    <span style='margin-right:20em;'></span>Password<span style='margin-right:13em;'></span>Tell us about yourself<br>
+    <span style='margin-right:20em;'></span><input type="password" name="password" 
+    required minlength="10" [(ngModel)]="content.pwrd" #password="ngModel">
+
+    <span style='margin-right:6em;'></span><textarea rows='1' cols='21'name="about" 
+    required [(ngModel)]="content.aboutu" #about="ngModel"></textarea>
+
+    <div  *ngIf="password.invalid && (password.dirty || password.touched)">
+    
+ <div *ngIf="password.errors.required">
+    <span style='margin-right:20em;'></span> <b>Password is required.</b>
+  </div>
+  <div *ngIf="password.errors.minlength">
+      <span style='margin-right:20em;'></span><b>Password must be at least 10 characters long.</b>
+ </div>
+ </div>
+ 
+ <div  *ngIf="about.invalid && (about.dirty || about.touched)">
+   <div *ngIf="about.errors.required">
+      <span style='margin-right:37em;'></span>  <b>Describe yourself.</b>
+    </div>
+    </div><br><br>
+
+    <span style='margin-right:20em;'></span>
+    <select name="cities" required [(ngModel)]="content.city" #cities="ngModel">
+      <option value="Telangana">Telangana</option>
+      <option value="Visakhapatnam">Visakhapatnam</option>
+      <option value="Banglore">Banglore</option>
+      </select>
+      <span style='margin-right:10em;'></span><input type="radio" name="gender" value="male"  
+    required [(ngModel)]="content.gen" #gender="ngModel">Male
+    <input type="radio" name="gender" value="female"
+    required [(ngModel)]="content.gen" #gender="ngModel">Female
+
+      <div  *ngIf="cities.invalid && (cities.dirty || cities.touched)">
+          <div *ngIf="cities.errors.required">
+              <span style='margin-right:20em;'></span> <b> Dropdown is required.</b>
+            </div>
+            </div>
+
+    
+    <div  *ngIf="gender.invalid && (gender.dirty || gender.touched)">
+   <div *ngIf="gender.errors.required">
+      <span style='margin-right:37em;'></span>  <b>Gender is required.</b>
+    </div>
+    </div>
+    <br><br>
+
+    <span style='margin-right:20em;'></span><input type="checkbox" name="check"
+    required [(ngModel)]="content.box" #check="ngModel">I want to receive email about updates to website
+    <div  *ngIf="check.invalid && (check.dirty || check.touched)">
+   <div *ngIf="check.errors.required">
+      <span style='margin-right:20em;'></span> <b> Checkbox is required.</b>
+    </div>
+    </div><br><br>
+
+    <span style='margin-right:30em;'></span><button type="submit"  class="button" [disabled]="f.form.pristine || f.form.invalid">Register</button>
+    
+    
+  </form>
+  </div>
+
+//CSS
+
+#main{
+    margin:auto;
+    height:800px;
+    width:1000px;
+    //border:1px solid black;
+}
+button{
+    background-color: plum;
+    width:110px;
+
+}
+b{
+   color:red;
+}
+
+//COMPONENT.TS
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  content:any={};
+  onSubmit(){
+    alert(JSON.stringify(this.content) )
+  }
+}
+
+
+//MODULE.TS
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
