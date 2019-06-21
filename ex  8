@@ -1,0 +1,155 @@
+//HTML
+
+<!--The content below is only a placeholder and can be replaced.-->
+<div id="main">
+  <div>
+ <Header>&nbsp;&nbsp;Book MyShow
+   <br>&nbsp; Logo<span style='margin-right:15em;'></span>Header</Header>
+ </div>
+
+ 
+      <div id="center">
+   <div id="tables">
+   <table id="table1">
+      <caption>Movies</caption>
+     <tr *ngFor="let items of array">
+     <td>{{item.movies}} <button (click)="button1($event)">Select</button></td>
+     </tr>
+       <tr>
+         <td>Adhurs <button (click)="button1($event)">Select</button></td>
+        </tr>
+       <tr>
+       <td>Jai Lava Kusa <button (click)="button1($event)">Select</button></td>
+     </tr>
+   </table>
+   </div >
+  
+   
+   <div id="tables2">
+   
+   <table id="table2">
+      <caption>Theaters</caption>
+     <tr>
+       <td>Jagadamba <button (click)="button2($event)">Book</button></td>
+     </tr>
+       <tr>
+         <td>Kinnera <button (click)="button2($event)">Book</button></td>
+        </tr>
+       <tr>
+       <td>Melody <button (click)="button2($event)">Book</button></td>
+     </tr>
+   </table>
+  </div>
+  <div id="tables3">
+    <table id="table3">
+      <tr>
+        <td>How many tickets?<br><input type="text"></td>
+      </tr>
+      <tr>
+        <td>Mobile#<br><input type="text"></td>
+      </tr>
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button (click)="final($event)">Book</button></td>
+      </tr>
+    </table>
+  </div>
+  </div>
+
+
+  <Footer><span style='margin-right:16em;'></span>Footer</Footer>
+
+</div>
+
+ 
+ 
+
+//CSS
+
+
+#main{
+    margin:auto;
+    //border:1px solid black;
+    height:500px;
+    width:750px;
+}
+    Header{
+    margin:auto;
+    border:1px solid black;
+    height:70px;
+    width:700px;
+}
+#center{
+    float:middle;
+    margin:auto;
+    margin-:30px;
+#tables{
+#table1,tr{  
+  margin:auto;
+    height:30px;
+    width:200px;
+    border:1px solid black;
+    float:left;
+    }
+}
+#tables2{
+#table2,tr,td{ 
+    margin:auto;
+    height:30px;
+    width:200px;
+    border:1px solid black;
+    margin-left:100px;
+   }}
+   #tables3{
+    #table3{ 
+        margin:auto;
+        height:30px;
+        width:200px;
+        border:1px solid black;
+        margin-right:100px;
+        float:right;
+       }}}
+   Footer{
+    margin:auto;
+    margin-top:50px;
+    border:1px solid black;
+    height:70px;
+    width:700px;
+   }
+
+//COMPONENT.TS
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  array=[];
+ movies=[{name:'Bahubali 2'},{name:'Adhurs'},{name:'Jai Lava Kusa'}];
+ theaters=[{name1:'Jagadamba'},{name1:'Kinnera'},{name1:'Melody'}];
+}
+
+
+//MODULE.TS
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
