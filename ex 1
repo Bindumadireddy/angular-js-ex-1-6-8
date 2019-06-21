@@ -1,0 +1,88 @@
+//HTML
+
+<!--The content below is only a placeholder and can be replaced.-->
+<br>
+<br>
+<br>
+
+<div  id="content" style="text-align:center" >
+  <h1>
+    My Account
+  </h1>
+  <h2>${{num}}</h2>
+   
+  <button (click)="mybutton($event)" disabled={{dis}} id="button">Withdraw $10</button>&nbsp; &nbsp; <button (click)="Mybutton($event)" id="buttonn">Deposit $10</button>
+  
+
+</div>
+
+//CSS
+
+#content{
+    margin:auto;
+    
+    width: 400px;
+    height: 200px;
+    border:2px solid peachpuff;
+    background-color: peachpuff
+}
+#button{
+    background-color: yellow;
+}
+#buttonn{
+    background-color: green
+}
+
+//COMPONENT.TS
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  num:any=200;
+  dis:any;
+   Mybutton(event:any)
+   {
+     if(this.num>0)
+     {
+       this.dis=""
+     }
+       this.num=this.num+10;
+
+   }
+   mybutton(event:any)
+   {
+     if(this.num==10)
+     {
+       this.dis="disabled"
+     }
+       this.num=this.num-10
+     
+
+   }
+}
+
+//MODULE.TS
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
